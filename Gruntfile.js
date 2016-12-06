@@ -6,8 +6,7 @@ module.exports = function(grunt) {
   // You'll also have to install them using a command similar to:
   //     npm install --save jquery
   var VENDOR_LIBRARIES = [
-    //'jquery',
-    //'underscore'
+    "leaflet"
   ];
 
   config.browserify = {
@@ -85,16 +84,48 @@ module.exports = function(grunt) {
     }
   };
 
+    config.notify_hooks = {
+    options:{
+      enabled:true,
+      success:true,
+      duration:2
+    }
+  }
+
+
+config.cssmin = {
+  options: {
+    shorthandCompacting: false,
+    sourceMap:true,
+    roundingPrecision: -1
+  },
+  target: {
+    files: {
+      'css/vendor.min.css': [ 
+        'node_modules/leaflet.markercluster/dist/MarkerCluster.css', 
+        'node_modules/leaflet.markercluster/dist/MarkerCluster.Default.css',
+        'css/src/leaflet.css'
+      ]
+    }
+  }
+}
+
   grunt.initConfig(config);
 
   grunt.loadNpmTasks('grunt-sass');
   grunt.loadNpmTasks('grunt-browserify');
   grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-notify');
+  grunt.loadNpmTasks('grunt-contrib-cssmin');
 
   var defaultTasks = [];
 
+  defaultTasks.push('cssmin');
   defaultTasks.push('sass');
   defaultTasks.push('browserify');
 
   grunt.registerTask('default', defaultTasks);
+
+  grunt.task.run('notify_hooks');
+
 };

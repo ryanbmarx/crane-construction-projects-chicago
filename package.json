@@ -5,30 +5,38 @@
   "main": "js/src/app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "grunt",
-    "watch": "grunt watch"
+    "build": "grunt && npm run autoprefixer",
+    "watch": "grunt watch",
+    "autoprefixer": "postcss -u autoprefixer -r css/*.css"
   },
   "repository": {
     "type": "git",
     "url": ""
   },
-  "keywords": [
-  ],
+  "keywords": [],
   "author": "Chicago Tribune News Applications",
   "license": "MIT",
   "devDependencies": {
-    "babelify": "^7.3.0",
+    "autoprefixer": "^6.5.3",
     "babel-preset-es2015": "^6.9.0",
+    "babelify": "^7.3.0",
     "browserify": "^10.2.4",
+    "css-min": "^1.0.0",
     "grunt": "^0.4.5",
     "grunt-browserify": "^3.8.0",
+    "grunt-contrib-cssmin": "^1.0.2",
     "grunt-contrib-watch": "^0.6.1",
+    "grunt-notify": "^0.4.5",
     "grunt-sass": "^1.2.0",
     "minifyify": "^7.3.3",
+    "postcss-cli": "^2.6.0",
     "trib-styles": "git+https://tribune.unfuddle.com/git/tribune_trib-styles/"
   },
   "browserify": {
     "debug": true
   },
-  "tribune": {}
+  "tribune": {},
+  "dependencies": {
+    "leaflet": "^1.0.2"
+  }
 }
