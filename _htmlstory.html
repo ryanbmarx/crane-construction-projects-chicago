@@ -1,0 +1,56 @@
+
+{% block content %}
+<section class='intro'>
+	{{ intro|markdown }}
+</section>
+<section class='graphic'>
+	<figure class='map'>
+		<figcaption class=>
+			<p class='map__label'></p>
+		</figcaption>
+		<div class='map__container'></div>
+	</figure>
+	{% for project in projects[1:] %}
+		<div id='{{ project.permit_number }}' class='project' data-lat={{project.lat}} data-lng={{project.lng}}>
+			{{ project.description }}
+		</div>
+	{% endfor %}
+</section>
+<section class='notes'>
+	{% if notes %}
+		<p>{{ notes }}</p>
+	{% endif %}
+	{% if sources %}
+		<p>{{ sources|markdown }}</p>
+	{% endif %}
+	{% if credit %}
+		<p>{{ credit|markdown }}</p>
+	{% endif %}
+</section>
+
+
+{% endblock content %}
+
+{% block library_scripts %}
+{# Uncomment this if you are using libraries such as jQuery #}
+<script src="//{{ ROOT_URL }}/js/vendor.min.js"></script>
+{% endblock %}
+
+{% block scripts %}
+{# Uncomment this if you are using custom JavaScript #}
+<script src="//{{ ROOT_URL }}/js/app.min.js"></script>
+<script>
+(function(document) {
+  var CSS = [
+    "//{{ ROOT_URL }}/css/vendor.min.css",
+    "//{{ ROOT_URL }}/css/styles.css"
+  ];
+  CSS.forEach(function(url) {
+    var link = document.createElement('link');
+    link.setAttribute('rel', 'stylesheet');
+    link.setAttribute('href', url);
+    document.head.appendChild(link);
+  });
+})(document);
+</script>
+{% endblock scripts %}

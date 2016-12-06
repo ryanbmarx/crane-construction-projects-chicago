@@ -1,0 +1,33 @@
+// Enables for Tribune colors, but is required for everything.
+@import 'base-variables';
+// ---- ADD MORE VARIABLES HERE ---------------------------------------------
+
+
+// Required for everything, too, but can be broken down into smaller explicit imports if desired. 
+@import 'base-mixins';
+// ---- MAKE OR IMPORT MORE MIXINS HERE ---------------------------------------------
+
+
+// Class imports. Uncomment the ones you want to use.
+// @import 'ngux-visibility-toggles';
+// @import 'trib-bulletbox';
+// @import 'trib-buttons';
+// @import 'trib-colors';
+// @import 'trib-images-charts';
+// @import 'trib-legends';
+// @import 'trib-skeleton';
+// @import 'trib-tables';
+// @import 'trib-timeline-basic';
+@import 'trib-typography';
+// @import 'trib-utilities';
+
+
+// ---- IMPORT PROJECT STYLES FROM PARTIAL FILES HERE ---------------------------------------------
+@import 'map-styles';
+
+
+// ---- WRITE MORE PROJECT STYLES HERE ---------------------------------------------
+
+.trb_mainContent .notes p{
+	@include agate();
+}
