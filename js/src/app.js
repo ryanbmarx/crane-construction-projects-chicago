@@ -19,17 +19,6 @@ function drawMap(container){
 	// This css class can serve as a flag for map sizes, if needed. 
 	container.classList.add('go-map')
 
-		// L.geoJSON(mapLayers[1].data, {
-		// 	style: function(){
-		// 		return{
-		// 			"fillColor": 'black',
-		// 			"weight": 0,
-		// 			'fillOpacity': 0.5	
-		// 		}
-		// 	},
-		// }).addTo(map);
-
-
 	// Make a new map
 	let map =  L.map(container,
 		{
@@ -40,8 +29,6 @@ function drawMap(container){
 			// maxBounds:L.latLngBounds(L.latLng(36.590379, -92.133247),L.latLng(42.478624, -87.015605))
 		}
 	);
-	// map.addLayer(osm);
-
 
 	// This is using an npm plugin. Can be adjusted for many map types.
 	L.tileLayer.provider('Hydda.Full').addTo(map);
@@ -58,7 +45,6 @@ function drawMap(container){
 			html:`<span data-year=${dateYear} class='dot dot--${dateYear}'></span>`
 		});
 	}
-
 
 	// Dots on said map. This is the container.
 	let projectMarkers = L.layerGroup({});
@@ -81,15 +67,6 @@ function drawMap(container){
 				icon: getProjectIcon(permitDate)
 			}
 		)
-		// .on('click', function(e){
-		// 	let popupContent = `
-		// 		<p class='popup__name'><strong>${name}</strong></p>
-		// 		<p class='popup__town'><em>${town}</em></p>
-		// 		<a class='popup__button' href='#${id}'>Go there</a>`;
-		// 	this.bindPopup(popupContent).openPopup();
-		// 	// showTooltip(name, town);
-
-		// });
 
 		projectMarker.id = id;
 		projectMarker.addTo(projectMarkers);
@@ -99,11 +76,12 @@ function drawMap(container){
 
 function fadeToYear(year){
 	let yearDots = document.querySelectorAll(`.dot--${year}`); 
-	// console.log(document.querySelector('.map__year'));
+
+	// Labeling
 	document.querySelector('.map__year').innerHTML = year;
 	document.querySelector('.map__year').style.opacity = '1';
-	// document.querySelector('.map__year-subhede').innerHTML = `${yearDots.length} addresses`;
 
+	// Bars
 	document.querySelectorAll('.bar').forEach( bar =>{
 		bar.classList.add('muted');
 	});
