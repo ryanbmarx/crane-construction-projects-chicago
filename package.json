@@ -40,6 +40,7 @@
   "tribune": {},
   "dependencies": {
     "d3": "^4.4.0",
-    "leaflet": "^1.0.2"
+    "leaflet": "^1.0.2",
+    "leaflet-providers": "^1.1.16"
   }
 }

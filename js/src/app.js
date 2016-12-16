@@ -1,5 +1,6 @@
 var L = require('leaflet');
 var drawChart = require('./yearChart.js');
+require('leaflet-providers');
 
 function play(){
 	document.querySelectorAll('.dot').forEach( dot =>{
@@ -11,12 +12,23 @@ function drawMap(container){
 	console.log('drawing a map in ', container);
 
 	// Map tiles URLs
-	const osmUrl='http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
-	const osmAttrib='Map data © <a href="http://openstreetmap.org">OpenStreetMap</a> contributors';
-	const osm = new L.TileLayer(osmUrl, {minZoom: 8, maxZoom: 14, attribution: osmAttrib});
+	// const osmUrl='http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
+	// const osmAttrib='Map data © <a href="http://openstreetmap.org">OpenStreetMap</a> contributors';
+	// const osm = new L.TileLayer(osmUrl, {minZoom: 8, maxZoom: 14, attribution: osmAttrib});
 
 	// This css class can serve as a flag for map sizes, if needed. 
 	container.classList.add('go-map')
+
+		// L.geoJSON(mapLayers[1].data, {
+		// 	style: function(){
+		// 		return{
+		// 			"fillColor": 'black',
+		// 			"weight": 0,
+		// 			'fillOpacity': 0.5	
+		// 		}
+		// 	},
+		// }).addTo(map);
+
 
 	// Make a new map
 	let map =  L.map(container,
@@ -28,7 +40,12 @@ function drawMap(container){
 			// maxBounds:L.latLngBounds(L.latLng(36.590379, -92.133247),L.latLng(42.478624, -87.015605))
 		}
 	);
-	map.addLayer(osm);
+	// map.addLayer(osm);
+
+
+	// This is using an npm plugin. Can be adjusted for many map types.
+	L.tileLayer.provider('Hydda.Full').addTo(map);
+
 
 	// Define the marker for each project
 	
