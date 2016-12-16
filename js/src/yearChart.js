@@ -1,11 +1,11 @@
 import * as d3 from "d3";
+var getTribColor = require("./getTribColors.js");
 
 function yearAxisFormatter(year){
 	return `'${d3.format("02")(year - 2000)}`;
 }
 
 function drawChart(container, data){
-	console.log(data);
     d3.select(container).selectAll('*').remove();
 
     // Get our dimensions squared away. Ultimately the size of the chart is 
@@ -27,12 +27,6 @@ function drawChart(container, data){
             .attr('height', innerHeight)
             .attr('width', innerWidth)
             .attr('transform', `translate(${margin.left}, ${margin.top})`);
-
-
-    // Make our scales
-    // const yMax = d3.max(data, d => parseFloat(d.year));
-    // const yMin = d3.min(data, d => parseFloat(d.year));
-    // console.log("y: ", yMin, yMax);
 
     const y = d3.scaleLinear()
         .domain([0, d3.max(data, d => d.addresses)])
@@ -61,7 +55,7 @@ function drawChart(container, data){
 	    	.enter().append('rect')
 	    	.classed('bar', true)
 			.attr('data-year', d => d.year)
-	    	.style('fill', 'black')
+	    	.style('fill', getTribColor("trib_blue2"))
 	    	.attr('width', x.bandwidth())
 	    	.attr('height', d => y(d.addresses))
 	    	.attr('x', d => x(d.year))
