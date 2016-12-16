@@ -35,13 +35,15 @@
 }
 }
 
-// #year{
-// 	position:absolute;
-// 	top:75px;
-// 	right:0;
-// 	margin: 25px 25px 0 0;
-//     z-index: 100000;
-// }
+
+.map-legend{
+	@include trib-legend();
+
+	&__dot{
+		@include trib-legend__box('circle');
+		background:$dot-color;
+	}
+}
 
 .project-marker{
 	height:25px;
@@ -53,12 +55,9 @@
     width: 100%;
     display: block;
     border-radius:50%;
-	background: rgba($trib-blue2, .7);
+	background: rgba($dot-color, .7);
 	opacity:1;
 	transition: all $dot_transition;
-	&--2016{
-		background: rgba($trib-red2, .75);
-	}
 
 	&.dot--hidden{
 		transition: all $dot_transition;
