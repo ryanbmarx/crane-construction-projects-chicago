@@ -1,22 +1,18 @@
+
+
 .trb_mainContent .year-chart{
-	position: absolute;
-	top:100px;
-	right:25px;
-	z-index:10000;
+	// position: absolute;
+	// top:100px;
+	// right:25px;
+	// z-index:10000;
 	width:100%;
-	max-width:240px;
+	max-width:$chart_width;
+	float:left;
 
 	&__label{
 		@include label7();
 	    max-width: 200px;
 	    margin:0;
-	}
-
-	.map__year{
-		@include label2();
-		margin:0;
-		padding:0;
-		opacity:0;
 	}
 
 }

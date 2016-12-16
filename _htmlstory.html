@@ -4,16 +4,18 @@
 	{{ intro|markdown }}
 	<a id='play'>PLAY</a>
 </section>
+
 <section class='graphic'>
 	<figure class='map'>
 		<figcaption class=>
 			<p class='map__label'>Construction sites with a crane permit</p>
 		</figcaption>
 		<div class='year-chart'>
-			<p class='map__year'>Year</p>
 			<div id='year-chart'></div>
 		</div>
+
 		<div class='map__container'>
+			<p class='map__year'>Year</p>
 		</div>
 	</figure>
 	{% include '_project-list.html' %}

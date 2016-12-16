@@ -11,6 +11,7 @@ $bg:transparent;
 $hover-bg:$trib-blue2;
 $text-color:black;
 $dot_transition: 500ms;
+$chart_width:240px;
 
 
 // Class imports. Uncomment the ones you want to use.
@@ -20,7 +21,7 @@ $dot_transition: 500ms;
 // @import 'trib-colors';
 // @import 'trib-images-charts';
 // @import 'trib-legends';
-// @import 'trib-skeleton';
+@import 'trib-skeleton';
 // @import 'trib-tables';
 // @import 'trib-timeline-basic';
 @import 'trib-typography';

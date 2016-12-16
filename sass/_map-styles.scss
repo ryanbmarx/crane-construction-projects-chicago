@@ -1,22 +1,38 @@
 
 .trb_mainContent .map{
 	@include trib-chart();
+	@include clearfix();
 	position:relative;
+
 	&__label{
 		@include label6();
-		margin-bottom:5px;
+		margin-bottom:10px;
 	}
 
 	&__container{
 		display:none;
-		width:100%;
+		width:auto;
 		height:500px;
 		background:#eee;
-
-		&.go-map{
-			display:block;
-		}
+		margin-left:$chart_width + 25px; 
+	
+	.map__year{
+		@include label2();
+		margin:0;
+		padding:25px;
+		opacity:0;
+		z-index: 1000000000;
+		position: absolute;
+		top: 0;
+		right: 0;
+		text-align:right;
+		background: rgba(white,.5);
 	}
+
+	&.go-map{
+		display:block;
+	}
+}
 }
 
 // #year{
