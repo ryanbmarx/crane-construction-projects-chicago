@@ -1,0 +1,27 @@
+	<h2 class='project-list-label'>Addresses with new crane permits in 2016</h2>
+	<dl class='project-list-legend'>
+		<dt>
+			<span class='project-list-legend__dot project-list-legend__dot--office'></span>
+		</dt>
+		<dd>Office</dd>
+		<dt>
+			<span class='project-list-legend__dot project-list-legend__dot--residential'></span>
+		</dt>
+		<dd>Residential</dd>
+		<dt>
+			<span class='project-list-legend__dot project-list-legend__dot--retail'></span>
+		</dt>
+		<dd>Retail</dd>
+		<dt>
+			<span class='project-list-legend__dot project-list-legend__dot--mixed'></span>
+		</dt>
+		<dd>Mixed use</dd>
+	</dl>
+	<ul class='projects'>
+		{%- for project in projects[1:]|sort(false, attribute="lat") -%}
+			<li id='{{ project.permit_number }}' class='project project--{{ project.issue_year }} project--{{ loop.cycle("retail", "office", "mixed", "residential") }}' data-permit-date="{{ project.issue_date|xldate_to_datetime }}" data-lat={{project.lat}} data-lng={{project.lng}}>
+				<p class='project__address'>{{ project.address }}</p>
+				<p class='project__description'>{{ project.description }}</p>
+			</li>
+		{%- endfor -%}
+	</ul>

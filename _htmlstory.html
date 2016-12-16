@@ -2,19 +2,21 @@
 {% block content %}
 <section class='intro'>
 	{{ intro|markdown }}
+	<a id='play'>PLAY</a>
 </section>
 <section class='graphic'>
 	<figure class='map'>
 		<figcaption class=>
-			<p class='map__label'></p>
+			<p class='map__label'>Construction sites with a crane permit</p>
 		</figcaption>
-		<div class='map__container'></div>
-	</figure>
-	{% for project in projects[1:] %}
-		<div id='{{ project.permit_number }}' class='project' data-lat={{project.lat}} data-lng={{project.lng}}>
-			{{ project.description }}
+		<div class='year-chart'>
+			<p class='map__year'>Year</p>
+			<div id='year-chart'></div>
 		</div>
-	{% endfor %}
+		<div class='map__container'>
+		</div>
+	</figure>
+	{% include '_project-list.html' %}
 </section>
 <section class='notes'>
 	{% if notes %}
@@ -40,6 +42,13 @@
 {# Uncomment this if you are using custom JavaScript #}
 <script src="//{{ ROOT_URL }}/js/app.min.js"></script>
 <script>
+
+window.yearChartData = [
+	{%- for year in cranes_by_year -%}
+		{ year:{{ year.year }}, addresses:{{ year.address_count }} }{% if not loop.last %},{% endif %}
+	{%- endfor -%}
+];
+
 (function(document) {
   var CSS = [
     "//{{ ROOT_URL }}/css/vendor.min.css",
