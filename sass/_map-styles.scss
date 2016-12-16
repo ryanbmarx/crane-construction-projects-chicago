@@ -1,6 +1,10 @@
-.map{
+
+.trb_mainContent .map{
+	@include trib-chart();
+	position:relative;
 	&__label{
 		@include label6();
+		margin-bottom:5px;
 	}
 
 	&__container{
@@ -15,10 +19,39 @@
 	}
 }
 
+// #year{
+// 	position:absolute;
+// 	top:75px;
+// 	right:0;
+// 	margin: 25px 25px 0 0;
+//     z-index: 100000;
+// }
 
 .project-marker{
 	height:25px;
 	width:25px;
-	border-radius:50%;
-	background: rgba(blue, .5);
+}
+
+.dot{
+    height: 100%;
+    width: 100%;
+    display: block;
+    border-radius:50%;
+	background: rgba($trib-blue2, .7);
+	opacity:1;
+	transition: all $dot_transition;
+	&--2016{
+		background: rgba($trib-red2, .75);
+	}
+
+	&.dot--hidden{
+		transition: all $dot_transition;
+		opacity:0;
+	}
+}
+
+@media all and (max-width:650px){
+	.trb_mainContent .map__container{
+		height:350px;
+	}
 }

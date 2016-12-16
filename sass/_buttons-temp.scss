@@ -1,0 +1,93 @@
+
+@mixin buttons-container($buttons-per-row){
+	
+
+	@if $buttons-per-row > 0 {
+		// This stuff is the styling, but we don't need it if the buttons are to be displayed inline
+		$default-button-width: 95% / $buttons-per-row;
+		$button-gutter:5px;
+		display:flex;
+		align-items:center;
+		flex-wrap:wrap;
+		justify-content:space-between;
+		margin: 0 0 0 5px;
+		
+		a, button, .trib-button{
+			margin-bottom:10px;
+			padding-left:0;
+			padding-right:0;
+			// width: $default-button-width;
+			width: calc((100% / #{$buttons-per-row}) - 2px - #{$button-gutter});
+		}
+	} @else {
+		margin: 0 0 0 15px;
+	}
+}
+
+
+@mixin trib-button($type:none){
+	@if $type == "filled"{
+		$border-color:$trib_grey4;
+		$bg:$trib_grey4;
+		$text-color:black;
+		$hover-bg:$trib_grey3;
+	} @else if $type == active {
+		$border-color:$trib_blue2;
+		$bg:$trib_blue2;
+		$text-color:white;	
+		$hover-bg:$trib_blue2;
+	} @else {
+		$border-color:$trib_grey4;
+		$bg:transparent;
+		$text-color:black;
+		$hover-bg:$trib_grey4;
+	}
+
+	@include sans-serif();
+	display:inline-block;
+	padding: 15px;
+	border:1px solid $border-color;
+	background:$bg;
+	color:$text-color;
+	cursor:pointer;
+	text-decoration:none;
+	text-align:center;
+	
+	transition: background 150ms;
+
+	&:hover{
+		background:$hover-bg;
+		text-decoration:none;
+		color:$text-color;
+		transition: background 150ms;
+	}
+}
+
+.trib-buttons{
+	@include buttons-container(0);
+}
+
+
+.trib-buttons--flex{
+	@include buttons-container(4);
+}
+
+.trib-button{
+	@include trib-button();
+}
+
+
+.trib-button--filled{
+	@include trib-button('filled');	
+}
+
+.trib-button--active{
+	@include trib-button('active');	
+}
+
+.trib-button--block{
+	display:block;
+	padding-left:0;
+	padding-right:0;
+
+}

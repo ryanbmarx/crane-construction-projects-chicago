@@ -1,11 +1,16 @@
 // Enables for Tribune colors, but is required for everything.
 @import 'base-variables';
-// ---- ADD MORE VARIABLES HERE ---------------------------------------------
 
+// ---- ADD MORE VARIABLES HERE ---------------------------------------------
 
 // Required for everything, too, but can be broken down into smaller explicit imports if desired. 
 @import 'base-mixins';
 // ---- MAKE OR IMPORT MORE MIXINS HERE ---------------------------------------------
+$border-color:$trib-gray4;
+$bg:transparent;
+$hover-bg:$trib-blue2;
+$text-color:black;
+$dot_transition: 500ms;
 
 
 // Class imports. Uncomment the ones you want to use.
@@ -24,10 +29,30 @@
 
 // ---- IMPORT PROJECT STYLES FROM PARTIAL FILES HERE ---------------------------------------------
 @import 'map-styles';
-
+@import 'buttons-temp';
+@import 'project-list';
+@import 'chart';
 
 // ---- WRITE MORE PROJECT STYLES HERE ---------------------------------------------
 
 .trb_mainContent .notes p{
 	@include agate();
+}
+
+
+#play{
+	@include trib-button();
+	margin-bottom:25px;
+	padding:15px 25px;
+}
+
+@media all and (max-width: 850px){
+	#play{
+		display:block;
+		padding:15px 0;
+		margin:25px auto;
+		width:100%;
+		max-width: 280px;
+		background-color: $trib-grey4;
+	}
 }

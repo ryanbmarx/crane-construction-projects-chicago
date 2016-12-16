@@ -1,0 +1,91 @@
+$retail-color: $trib_blue2; 
+$residential-color: $trib_red2;
+$office-color: $trib_green2;
+$mixed-color: $trib_yellow_green;
+$project-border-width: 4px;
+
+
+.project-list-label{
+	@include label6();
+	margin-bottom:12px;
+}
+
+
+.project-list-legend{
+	@include trib-legend('inline');
+
+	.project-list-legend__dot{
+		@include trib_legend__box(0);
+		width: $project-border-width;
+
+		&--office{
+			background-color: $office-color;
+		}
+		&--residential{
+			background-color: $residential-color;
+		}
+		&--retail{
+			background-color: $retail-color;
+		}
+		&--mixed{
+			background-color: $mixed-color;
+		}
+
+	}
+
+}
+
+
+.trb_mainContent{
+	.projects{
+		list-style-type:none;
+		margin:0;
+		padding:0;
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: space-between;
+	}
+
+	.project{
+		display:none;
+		margin-bottom:20px;
+		padding-left:15px;
+		border-left:$project-border-width solid transparent;
+		width:40%;
+		
+		&--office{
+			border-color: $office-color;
+		}
+		&--residential{
+			border-color: $residential-color;
+		}
+		&--retail{
+			border-color: $retail-color;
+		}
+		&--mixed{
+			border-color: $mixed-color;
+		}
+		
+		&--2016{
+			display:block;
+		}
+
+		&__address{
+			@include sans-serif();
+			font-weight: bold;
+			margin:0 0 5px 0;
+		}
+
+		&__description{
+			margin:0;
+		}
+	}
+}
+
+
+
+@media all and (max-width:650px){
+	.trb_mainContent .project{
+		width:auto;
+	}
+}
