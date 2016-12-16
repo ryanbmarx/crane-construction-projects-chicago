@@ -7,7 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "grunt && npm run autoprefixer",
     "watch": "grunt watch",
-    "autoprefixer": "postcss -u autoprefixer -r css/*.css"
+    "autoprefixer": "postcss -u autoprefixer -r css/*.css",
+    "csv": "node scripts/downloadCSV.js 'https://docs.google.com/spreadsheets/d/1xxFZUo1LrmiEa5YaUw4OiHt3Kysnt57-22y1YBe9YLw/pub?gid=860740694&single=true&output=csv' './data/crane-data.csv'"
   },
   "repository": {
     "type": "git",
@@ -30,13 +31,15 @@
     "grunt-sass": "^1.2.0",
     "minifyify": "^7.3.3",
     "postcss-cli": "^2.6.0",
-    "trib-styles": "git+https://tribune.unfuddle.com/git/tribune_trib-styles/"
+    "trib-styles": "git+https://tribune.unfuddle.com/git/tribune_trib-styles/",
+    "underscore": "^1.8.3"
   },
   "browserify": {
     "debug": true
   },
   "tribune": {},
   "dependencies": {
+    "d3": "^4.4.0",
     "leaflet": "^1.0.2"
   }
 }
