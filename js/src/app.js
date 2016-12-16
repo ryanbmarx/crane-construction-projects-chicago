@@ -1,4 +1,11 @@
 var L = require('leaflet');
+var drawChart = require('./yearChart.js');
+
+function play(){
+	document.querySelectorAll('.dot').forEach( dot =>{
+		dot.classList.add('dot-hidden');
+	})
+}
 
 function drawMap(container){
 	console.log('drawing a map in ', container);
@@ -24,10 +31,16 @@ function drawMap(container){
 	map.addLayer(osm);
 
 	// Define the marker for each project
-	let projectIcon = L.divIcon({
-		className:'project-marker',
-		html:"<span class='ring'></span>"
-	});
+	
+	function getProjectIcon(date){
+		
+		let dateYear = 1900 + new Date(date).getYear();
+		// console.log(date, dateYear);
+		return L.divIcon({
+			className:'project-marker',
+			html:`<span data-year=${dateYear} class='dot dot--${dateYear}'></span>`
+		});
+	}
 
 
 	// Dots on said map. This is the container.
@@ -39,7 +52,8 @@ function drawMap(container){
 	projectList.forEach(project => {
 		let lat = project.dataset.lat,
 			lng = project.dataset.lng,
-			id = project.getAttribute('id');
+			id = project.getAttribute('id'),
+			permitDate = project.dataset.permitDate;
 
 		let projectMarker = L.marker(
 			{
@@ -47,7 +61,7 @@ function drawMap(container){
 				lng:parseFloat(lng)
 			},
 			{
-				icon: projectIcon
+				icon: getProjectIcon(permitDate)
 			}
 		)
 		// .on('click', function(e){
@@ -66,6 +80,40 @@ function drawMap(container){
 	projectMarkers.addTo(map);
 }
 
+function fadeToYear(year){
+	let yearDots = document.querySelectorAll(`.dot--${year}`); 
+	// console.log(document.querySelector('.map__year'));
+	document.querySelector('.map__year').innerHTML = year;
+	document.querySelector('.map__year').style.opacity = '1';
+	// document.querySelector('.map__year-subhede').innerHTML = `${yearDots.length} addresses`;
+
+	document.querySelectorAll('.bar').forEach( bar =>{
+		bar.classList.add('muted');
+	});
+	document.querySelector(`.bar[data-year="${year}"]`).classList.remove('muted');
+
+	document.querySelectorAll('.dot').forEach( dot =>{
+		dot.classList.add('dot--hidden')
+	});
+
+	yearDots.forEach( dot =>{
+		dot.classList.remove('dot--hidden');
+	});
+}
+
+function play(){
+	// Start by clearing a previously-started iteration of the animation.
+	window.clearInterval(playInterval);
+	let year = 2006;
+	let playInterval = window.setInterval(function(){
+		fadeToYear(year);
+		year++;
+		if (year > 2016){
+			window.clearInterval(playInterval);
+		}
+	}, 1000) ;
+	
+}
 
 
 window.onload = function(){
@@ -73,4 +121,6 @@ window.onload = function(){
 	mapContainers.forEach( mapContainer => {
 		drawMap(mapContainer);	
 	});
+	drawChart(document.getElementById('year-chart'), window.yearChartData);
+	document.getElementById('play').addEventListener('click', play, false);
 }
