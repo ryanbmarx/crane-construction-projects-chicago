@@ -2,39 +2,38 @@
 {% block content %}
 <section class='intro'>
 	{{ intro|markdown }}
-	<a id='play'>PLAY</a>
 </section>
 
 <section class='graphic'>
-	<figure class='map'>
-		<figcaption class=>
-			<p class='map__label'>Construction sites with a crane permit</p>
+	<div class='map'>
+		<div class="map__sidebar">
+			<p class='map__label'>{{ map_label }}</p>
 			<dl class='map-legend'>
 				<dt>
 					<span class='map-legend__dot'></span>
 				</dt>
-				<dd>Address with at least one crane permit</dd>
+				<dd>{{ map_legend }}</dd>
 			</dl>
-		</figcaption>
-		<div class='year-chart'>
-			<div id='year-chart'></div>
+			<a id='play'>{{ play_button_label }}</a>
+			<div class='year-chart'>
+				<div id='year-chart'></div>
+			</div>
 		</div>
-
 		<div class='map__container'>
 			<p class='map__year'>Year</p>
 		</div>
-	</figure>
+	</div>
 	{% include '_project-list.html' %}
 </section>
 <section class='notes'>
 	{% if notes %}
-		<p>{{ notes }}</p>
+	<p>{{ notes }}</p>
 	{% endif %}
 	{% if sources %}
-		<p>{{ sources|markdown }}</p>
+	<p>{{ sources|markdown }}</p>
 	{% endif %}
 	{% if credit %}
-		<p>{{ credit|markdown }}</p>
+	<p>{{ credit|markdown }}</p>
 	{% endif %}
 </section>
 
@@ -51,23 +50,23 @@
 <script src="//{{ ROOT_URL }}/js/app.min.js"></script>
 <script>
 
-window.yearChartData = [
+	window.yearChartData = [
 	{%- for year in cranes_by_year -%}
-		{ year:{{ year.year }}, addresses:{{ year.address_count }} }{% if not loop.last %},{% endif %}
+	{ year:{{ year.year }}, addresses:{{ year.address_count }} }{% if not loop.last %},{% endif %}
 	{%- endfor -%}
-];
+	];
 
-(function(document) {
-  var CSS = [
-    "//{{ ROOT_URL }}/css/vendor.min.css",
-    "//{{ ROOT_URL }}/css/styles.css"
-  ];
-  CSS.forEach(function(url) {
-    var link = document.createElement('link');
-    link.setAttribute('rel', 'stylesheet');
-    link.setAttribute('href', url);
-    document.head.appendChild(link);
-  });
-})(document);
+	(function(document) {
+		var CSS = [
+		"//{{ ROOT_URL }}/css/vendor.min.css",
+		"//{{ ROOT_URL }}/css/styles.css"
+		];
+		CSS.forEach(function(url) {
+			var link = document.createElement('link');
+			link.setAttribute('rel', 'stylesheet');
+			link.setAttribute('href', url);
+			document.head.appendChild(link);
+		});
+	})(document);
 </script>
 {% endblock scripts %}
