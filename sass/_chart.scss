@@ -6,8 +6,7 @@
 	// right:25px;
 	// z-index:10000;
 	width:100%;
-	max-width:$chart_width;
-	float:left;
+	// float:left;
 
 	&__label{
 		@include label7();
@@ -44,14 +43,20 @@
 	    position: static;
 	    max-width: none;
 	    margin:15px 0;
+	}
 
-	    .map__year{
-			display:none;
-		}
+	.trb_mainContent .map__container .map__year{
+		font-size:30px;
+		padding:15px;
 	}
 
 }
+
+
 @media all and (max-width:650px){
+	.trb_mainContent .map__container .map__year{
+		font-size:22px;
+	}
 	#year-chart{
 		height:140px;
 	}

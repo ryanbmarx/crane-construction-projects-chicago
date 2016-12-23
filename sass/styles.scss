@@ -12,7 +12,7 @@ $hover-bg:$trib-blue2;
 $text-color:black;
 $dot-color:$trib-blue2;
 $dot_transition: 500ms;
-$chart_width:240px;
+$chart_width:280px;
 
 
 // Class imports. Uncomment the ones you want to use.
@@ -44,8 +44,11 @@ $chart_width:240px;
 
 #play{
 	@include trib-button();
-	margin-bottom:25px;
-	padding:15px 25px;
+	display:block;
+	width:100%;
+	max-width:$sidebar_width;
+	margin:0 auto 25px auto;
+	padding:15px 0;
 }
 
 @media all and (max-width: 850px){

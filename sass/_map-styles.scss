@@ -1,8 +1,15 @@
+$sidebar_width:$chart_width;
+
 
 .trb_mainContent .map{
 	@include trib-chart();
 	@include clearfix();
 	position:relative;
+
+	&__sidebar{
+		width:$sidebar_width;
+		float:left;
+	}
 
 	&__label{
 		@include label6();
@@ -14,7 +21,7 @@
 		width:auto;
 		height:500px;
 		background:#eee;
-		margin-left:$chart_width + 25px; 
+		margin-left:$sidebar_width + 25px; 
 	
 	.map__year{
 		@include label2();
@@ -65,8 +72,31 @@
 	}
 }
 
+@media all and (max-width:700px){
+.trb_mainContent {
+	.map__sidebar{
+	width:100%;
+	max-width: 50%;
+}
+.map__container{
+	margin-left: 52%;
+	}
+}
+
+}
+
 @media all and (max-width:650px){
 	.trb_mainContent .map__container{
 		height:350px;
 	}
+}
+
+@media all and (max-width:600px){
+	.trb_mainContent {
+		.map__sidebar, .map__container{
+			max-width:none;
+			width:100%;
+			float:none;
+			margin-left:0;
+		}}
 }
