@@ -38,11 +38,11 @@ function drawMap(container){
 	
 	function getProjectIcon(date){
 		
-		let dateYear = 1900 + new Date(date).getYear();
-		// console.log(date, dateYear);
+		let dateYear = date.split(/[- :]/)[0];
+		console.log(date, dateYear, typeof(dateYear));
 		return L.divIcon({
 			className:'project-marker',
-			html:`<span data-year=${dateYear} class='dot dot--${dateYear}'></span>`
+			html:`<span data-year=${parseInt(dateYear)} class='dot dot--${parseInt(dateYear)}'></span>`
 		});
 	}
 
