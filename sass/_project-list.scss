@@ -50,7 +50,7 @@ $project-border-width: 4px;
 		display:none;
 		margin-bottom:20px;
 		padding-left:15px;
-		border-left:$project-border-width solid transparent;
+		border-left:$project-border-width solid $trib-gray3;
 		width:40%;
 		
 		&--office{
